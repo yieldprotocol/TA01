@@ -152,8 +152,7 @@ function App() {
             <div className='section'>
               In your comfort zone:
 
-             <p style={{fontSize:'24px'}}>  </p>
-            <p  style={{fontSize:'14px'}}> This app is NOT particularily well made (and the storyline is shoddy). Use whatever tools/packages you feel comfortable with to shuffle things around, tidy things up, or show-off your skills. </p>
+            <p> This app is NOT particularily well made (and the storyline is shoddy). Use whatever tools/packages you feel comfortable with to shuffle things around, tidy things up, or show-off your skills. </p>
             <li> <p> <strong>Optional:</strong> Make this page <strong>nicer to look at</strong> </p></li>
             <li> <p> <strong>Optional:</strong> Make this test <strong> nicer to work with</strong> for the next potential candidate</p></li>
             </div>
@@ -162,7 +161,7 @@ function App() {
 
 
           <div className='section'>
-          <p>When you feel like you have done submit a PR. </p>
+          <p>When you feel like you have done, submit a PR. </p>
           <p style={{fontSize:'14px'}}>Thank you very much for taking this assessment. We appreciate your time, and welcome any feedback!</p>
           </div>
 
