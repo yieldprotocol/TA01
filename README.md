@@ -30,9 +30,9 @@ const config: HardhatUserConfig = {
 };
 ```
 
-Ensure you are useing RPC to http://localhost:8545.
+Ensure you are using RPC to http://localhost:8545.
 
-You may also need to set the chainID to 31337 if you are useing Hardhat blockchain development node.
+You may also need to set the chainID to 31337 if you are using Hardhat blockchain development node.
 
 ## Invalid nonce.
 

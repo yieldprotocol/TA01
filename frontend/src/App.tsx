@@ -30,20 +30,25 @@ function App() {
             Briefing:
             </p>
             <p>
-              This single page app should connect with a local blockchain implementation, receive and send ETH, and interact with a predeployed ERC-20 contract, TST.
+              This assessment requires you to create <a style={{color:'white'}} href='https://reactjs.org/' target='_blank' >React</a> elements that interact with the <a style={{color:'white'}} href='https://ethereum.org/en/' target='_blank' >Ethereum</a> blockchain. We know that some of this may be new to you, and there are things here that you may not currently understand very well. That's ok. Part of the purpose of this technical assessment is to see how well you use <em>us</em> as a resource to help you get work done by asking us questions.
+              Once complete, this single page app should connect with a local blockchain implementation, receive and send ETH, and interact with a predeployed <a style={{color:'white'}} href='https://eips.ethereum.org/EIPS/eip-20' target='_blank' >ERC20</a> contract, TST.
             </p>                    
             <p style={{fontSize:'14px'}}>
-              A Hardhat implementation is 'pre-setup'. Run it in the background with with:  <code> npx hardhat node --watch </code>.           
+              A <a style={{color:'white'}} href='https://hardhat.org/' target='_blank' >Hardhat</a> implementation is 'pre-setup'. Run it in the background with with:  <code> npx hardhat node --watch </code>.           
             </p>
+            <p style={{fontSize:'14px'}}>
+              Also, make sure you have <a style={{color:'white'}} href='https://metamask.io/' target='_blank' >Metamask</a> installed in your browser. 
+            </p>
+
             <div className='section'>
               <BorrowFromVic />
             </div>
              
             <p style={{fontSize:'14px'}}>
-              If all is running fine at this point... the above button will short-circuit the system and credit the connected <a href='https://metamask.io/' target='_blank' >metamask </a> account with 1.5ETH. This should help you get going with the rest of the tasks.                
+              If all is running fine at this point, the above button will short-circuit the system and credit the connected metamask account with <strong>1.5ETH</strong>. This should help you get going with the rest of the tasks.                
             </p>
             <p style={{fontSize:'14px'}}>
-            ps. make sure metamask is connected to the 'custom RPC network' with port 31337.
+              HINT: Make sure metamask is connected to the 'custom RPC network' with port 31337.
             </p>
           </div>
 
@@ -53,12 +58,11 @@ function App() {
               <li> 
                 <div >
                   <div >
-                    <p > Create a new React component to show the account name and ETH balance of the connected wallet: </p>               
+                    <p > Create a new React component to show the account name and ETH balance of the connected wallet. </p>               
                   </div>
                   <div style={{alignContent:'flex-end', border:'2px solid white'}}> 0 ETH </div>
                 </div>
-                <p style={{fontSize:'14px'}}> (human readable, and dynamically changing would be nice. ) </p>
-                
+                <p style={{fontSize:'14px'}}> (human readable, and dynamically changing would be nice) </p>           
               </li> 
 
               <li> 
@@ -67,11 +71,11 @@ function App() {
                   <button onClick={()=>console.log('Make this button sends eth ' )}> Button </button> 
                   send  <strong>1.25 </strong> Eth  (or a variable amount) from your connected account to another address: <input />. 
                 </p> 
-                <p >(It might be a good idea to pay Vic back?! )</p>
+                <p style={{fontSize:'14px'}}>(It might be a good idea to pay Vic back?! )</p>
 
                 <p style={{fontSize:'14px'}}>
-                 hint: all the account info/fns you need for these two tasks are in the <em>signerContext</em>. 
-                (also, It might be easier to break each task out into a new component.)
+                 HINT: all the account info/functions you need for these first two tasks are in the <em>signerContext  </em>  
+                ( It might also be easier to break each task out into a new component).
                 </p>
 
               </li>
@@ -80,24 +84,24 @@ function App() {
 
 
             <div className='section'> 
-              Working with ERC20 tokens:
+              Working with ERC20 Tokens:
 
               <li>
                 <div> 
-                  <p > Get some TST (TEST TOKENS) </p>
+                  <p > Get some TST (Test Tokens) </p>
                 </div>
                 <div>
                   <p style={{fontSize:'14px'}}>
-                  <strong>I know a someone who's got loads,... 🦈 !  </strong> 
+                  <strong>I know a someone who has loads,... 🦈 !  </strong> 
                   </p>
                   <p style={{fontSize:'14px'}}>
                   Vic's account holds a lot of TST. Help yourself to it - she left her key under the mat. 
                   </p> 
 
-                  <input placeholder='amount to steal' /> <button onClick={()=>console.log('make this button steal Vics TST')}> steal TST!</button>
+                  <input placeholder='amount to steal' /> <button onClick={()=>console.log('make this button steal Vics TST')}> Steal TST!</button>
 
                   <p style={{fontSize:'14px'}}>
-                    If you need some more help here, have a look at the 'BorrowFromVic' and 'VicsClaim' components ... there are certainly enought hints in those to accomplish the task!!
+                    HINT: If you need some more help here, have a look at the 'BorrowFromVic' and 'VicsClaim' components ... there are certainly enought hints in those to accomplish the task!!
                   </p> 
                 </div>
               </li>
@@ -109,18 +113,18 @@ function App() {
                 <div style={{alignContent:'flex-end', border:'2px solid white'}}> 0 TST </div>
 
                 <p style={{fontSize:'14px'}}>
-                  Hint: This one should be easy after the last. You should use the 'tokenContext' here (which has wrapped all the ERC20 functionality).
+                  HINT: This one should be easy after the last. You should use the 'tokenContext' here ( which has wrapped all the ERC20 functionality ).
                 </p>
               </li> 
 
 
               <li> 
                 <p> 
-                  Cover your tracks! Make this <button> button </button> transfer <input /> of the Test token (TST) from your account to another account : 
-                  <input/> 
+                  Cover your tracks! Make this <button> button </button> transfer <input /> of the Test token (TST) from your account to another account:  
+                  <input/> .
                 </p> 
                 <p style={{fontSize:'14px'}}>
-                  Hint: Use the 'tokenContext' here too!
+                  HINT: Use the 'tokenContext' here too!
                 </p>
 
               </li>
@@ -131,12 +135,12 @@ function App() {
                   </p> 
 
                   <p style={{fontSize:'14px'}}> 
-                  <strong>Hey,... VIC IS MAD!!! </strong> she wants some of her TST back. Thats fine (it was free anyway). 
-                  Give her permission to take as much as she wants from your account. 
-                  (Best we give her access to the highest possible amount:  ethers.constants.MaxUint256 ) 
+                  <strong>Hey,... VIC IS MAD!!! </strong> She wants some of her TST back. That's fine - it's not worth much anyway. 
+                  Give her permission to take as much as she wants from your account
+                  ( best we give her access to the highest possible amount:  ethers.constants.MaxUint256 ).
                 </p>
                 <p style={{fontSize:'14px'}}>
-                    Hint: The only help I can give you here is to checkout the ERC20 token spec.
+                    HINT: The only help I can give you here is to checkout the ERC20 token spec.
                 </p> 
 
                 <VicsClaim />
@@ -146,24 +150,26 @@ function App() {
 
 
             <div className='section'>
-              <strong>OPTIONaL EXTRA STUFF</strong> 
+              In your comfort zone:
 
-             <p style={{fontSize:'24px'}}> In your comfort zone : </p>
+             <p style={{fontSize:'24px'}}>  </p>
             <p  style={{fontSize:'14px'}}> This app is NOT particularily well made (and the storyline is shoddy). Use whatever tools/packages you feel comfortable with to shuffle things around, tidy things up, or show-off your skills. </p>
-            <li> <p> *Optional*: Make this page <strong>nicer to look at</strong> </p></li>
-            <li> <p> *Optional*: Make this test <strong> nicer to work with</strong> for the next potential candidate</p></li>
+            <li> <p> <strong>Optional:</strong> Make this page <strong>nicer to look at</strong> </p></li>
+            <li> <p> <strong>Optional:</strong> Make this test <strong> nicer to work with</strong> for the next potential candidate</p></li>
             </div>
 
           </ol>
 
 
-          When you feel like you have done submit a PR. 
-
           <div className='section'>
-          <p>this is an extra example of a contract for reference:</p> 
-          <Greeter></Greeter>
+          <p>When you feel like you have done submit a PR. </p>
+          <p style={{fontSize:'14px'}}>Thank you very much for taking this assessment. We appreciate your time, and welcome any feedback!</p>
           </div>
 
+          <div className='section'>
+          <p style={{fontSize:'14px'}} >Here is an extra example of a contract, for reference purposes:</p> 
+            <Greeter></Greeter>
+          </div>
           </div>
 
         </Symfoni>
