@@ -36,6 +36,5 @@
   "bugs": {
     "url": "https://github.com/symfoni/hardhat-react-boilerplate/issues"
   },
-  "homepage": "https://github.com/symfoni/hardhat-react-boilerplate#readme",
-  "dependencies": {}
+  "homepage": "https://github.com/symfoni/hardhat-react-boilerplate#readme"
 }
