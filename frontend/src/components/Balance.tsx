@@ -1,5 +1,5 @@
+import React, { memo } from "react";
 import { BigNumber, utils } from "ethers";
-import React from "react";
 
 interface Props {
   balance: BigNumber;
@@ -7,13 +7,14 @@ interface Props {
   decimals: number;
 }
 
-export const Balance: React.FC<Props> = ({ balance, symbol, decimals }) => {
+const Balance: React.FC<Props> = ({ balance, symbol, decimals }) => {
   return (
     <div style={{ alignContent: "flex-end", border: "2px solid white" }}>
-      {balance &&
-        `${Number(utils.formatUnits(balance, decimals)).toFixed(2)} ${symbol}`}
+      {balance
+        ? `${Number(utils.formatUnits(balance, decimals)).toFixed(2)} ${symbol}`
+        : "0"}
     </div>
   );
 };
 
-export default Balance;
+export default memo(Balance);

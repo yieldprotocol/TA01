@@ -1,4 +1,4 @@
-import { BigNumber, utils } from "ethers";
+import { utils } from "ethers";
 
 export function formatAddress(addr: string) {
   return (
@@ -13,18 +13,29 @@ export async function sendToken(
   amount: string,
   tokenDecimals: number
 ) {
-  const amountFormmated = utils.parseUnits(amount, tokenDecimals);
-  await tokenContract.instance?.transfer(to, amountFormmated);
+  const amountFormatted = utils.parseUnits(amount, tokenDecimals);
+  try {
+    const tx = await tokenContract.instance?.transfer(to, amountFormatted);
+    const res = await tx.wait();
+    return res;
+  } catch (e) {
+    console.error(e);
+  }
 }
 
 export async function sendEth(signer: any, to: string, amount: string) {
   const gas = (await signer?.estimateGas()) * (await signer?.getGasPrice());
   const sendAmount = utils.parseEther(amount).sub(gas);
 
-  console.log(gas);
-  console.log(utils.formatEther(sendAmount));
-  await signer?.sendTransaction({
+  const tx = await signer?.sendTransaction({
     to,
     value: sendAmount,
   });
+
+  try {
+    const res = await tx.wait();
+    return res;
+  } catch (e) {
+    console.error(e);
+  }
 }

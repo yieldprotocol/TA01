@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { memo, useContext } from "react";
 import { CurrentAddressContext } from "./../hardhat/SymfoniContext";
 import { formatAddress } from "../helpers/userHelpers";
 import Balance from "./Balance";
@@ -6,7 +6,7 @@ import useEthBalance from "../hooks/useEthBalance";
 
 interface Props {}
 
-export const ETHBalance: React.FC<Props> = () => {
+const ETHBalance: React.FC<Props> = () => {
   const [currentAddress] = useContext(CurrentAddressContext);
   const ethBalance = useEthBalance();
 
@@ -20,4 +20,4 @@ export const ETHBalance: React.FC<Props> = () => {
   );
 };
 
-export default ETHBalance;
+export default memo(ETHBalance);

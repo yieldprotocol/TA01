@@ -6,20 +6,16 @@ import {
 } from "../hardhat/SymfoniContext";
 import { updateBalance } from "../actions/user";
 import { useStateContext } from "../stores/state";
+import { BigNumber } from "ethers";
 
 export default function useTokenBalance(tokenContract: any) {
   const [currentAddress] = useContext(CurrentAddressContext);
   const [signer] = useContext(SignerContext);
   const [provider] = useContext(ProviderContext);
-  const {
-    state: {
-      user: { balances },
-    },
-    dispatch,
-  } = useStateContext();
+  const { dispatch } = useStateContext();
   const [decimals, setDecimals] = useState<number>(0);
   const [symbol, setSymbol] = useState<string>("");
-  const [balance, setBalance] = useState(balances[symbol] || 0);
+  const [balance, setBalance] = useState(BigNumber.from("0"));
 
   useEffect(() => {
     async function getTokenData() {
@@ -31,7 +27,7 @@ export default function useTokenBalance(tokenContract: any) {
       }
     }
     getTokenData();
-  }, [tokenContract.instance, symbol, decimals]);
+  }, [tokenContract.instance]);
 
   // Using React ref here to prevent component re-rendering when changing
   // previous balance value
@@ -56,7 +52,6 @@ export default function useTokenBalance(tokenContract: any) {
     currentAddress,
     decimals,
     symbol,
-    balance,
   ]);
 
   useEffect(() => {

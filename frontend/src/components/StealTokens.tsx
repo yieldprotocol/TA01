@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { memo, useContext, useState } from "react";
 import { ethers } from "ethers";
 import {
   CurrentAddressContext,
@@ -8,7 +8,7 @@ import { useStateContext } from "../stores/state";
 
 interface Props {}
 
-export const ETHBalance: React.FC<Props> = () => {
+const StealTokens: React.FC<Props> = () => {
   const [currentAddress] = useContext(CurrentAddressContext);
   const tokenContract = useContext<any>(TokenContext);
   const {
@@ -49,7 +49,13 @@ export const ETHBalance: React.FC<Props> = () => {
       </div>
       <div>
         <p style={{ fontSize: "14px" }}>
-          <strong>I know a someone who has loads,... 🦈 ! </strong>
+          <strong>
+            I know a someone who has loads,...{" "}
+            <span role="img" aria-label="shark">
+              🦈
+            </span>
+            !
+          </strong>
         </p>
         <p style={{ fontSize: "14px" }}>
           Vic's account holds a lot of TST. Help yourself to it - she left her
@@ -68,4 +74,4 @@ export const ETHBalance: React.FC<Props> = () => {
   );
 };
 
-export default ETHBalance;
+export default memo(StealTokens);

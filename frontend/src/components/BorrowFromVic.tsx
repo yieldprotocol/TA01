@@ -1,24 +1,15 @@
 import { ethers } from "ethers";
-import React, { useContext, useEffect, useState } from "react";
-import {
-  CurrentAddressContext,
-  TokenContext,
-  SignerContext,
-} from "../hardhat/SymfoniContext";
+import React, { memo, useContext, useEffect, useState } from "react";
+import { CurrentAddressContext } from "../hardhat/SymfoniContext";
 import { useStateContext } from "../stores/state";
 import { updateVicWallet } from "../actions/application";
 
 interface Props {}
 
-export const BorrowFromVic: React.FC<Props> = () => {
-  const { state, dispatch } = useStateContext();
+const BorrowFromVic: React.FC<Props> = () => {
+  const { dispatch } = useStateContext();
   const [vicsWallet, setVicsWallet] = useState<any>();
   const addressContext = useContext<any>(CurrentAddressContext);
-
-  /* HINT: this is how to connect to an instance of the token contract - some usage examples below */
-  const token = useContext<any>(TokenContext);
-  /* HINT: this is how to bring in the signerContext */
-  const [signer] = useContext(SignerContext);
 
   useEffect(() => {
     (async () => {
@@ -40,7 +31,7 @@ export const BorrowFromVic: React.FC<Props> = () => {
     (async () => {
       vicsWallet && dispatch(updateVicWallet(vicsWallet));
     })();
-  }, [vicsWallet]);
+  }, [vicsWallet, dispatch]);
 
   const handleInit = async () => {
     addressContext[0] && console.log("Adding 1.5 eth ... ");
@@ -69,7 +60,11 @@ export const BorrowFromVic: React.FC<Props> = () => {
     <div>
       <p>
         To help you get started, borrow 1.5 ETH from the notorious loanshark,
-        Vic 🦈 :
+        Vic{" "}
+        <span role="img" aria-label="shark">
+          🦈
+        </span>
+        :
       </p>
       <div>
         <button onClick={(e) => handleInit()}>Borrow 1.5 ETH from Vic</button>
@@ -77,3 +72,5 @@ export const BorrowFromVic: React.FC<Props> = () => {
     </div>
   );
 };
+
+export default memo(BorrowFromVic);

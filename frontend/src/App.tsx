@@ -1,8 +1,8 @@
 import React from "react";
 import "./App.css";
 import { Symfoni } from "./hardhat/SymfoniContext";
-import { BorrowFromVic } from "./components/BorrowFromVic";
-import { VicsClaim } from "./components/VicsClaim";
+import BorrowFromVic from "./components/BorrowFromVic";
+import VicsClaim from "./components/VicsClaim";
 import ETHBalance from "./components/ETHBalance";
 import StealTokens from "./components/StealTokens";
 import TSTBalance from "./components/TSTBalance";

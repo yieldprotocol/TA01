@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { memo, useContext } from "react";
 import {
   CurrentAddressContext,
   TokenContext,
@@ -8,7 +8,7 @@ import useTokenBalance from "../hooks/useTokenBalance";
 
 interface Props {}
 
-export const TSTBalance: React.FC<Props> = () => {
+const TSTBalance: React.FC<Props> = () => {
   const [currentAddress] = useContext(CurrentAddressContext);
   const tokenContract = useContext(TokenContext);
   const [balance, symbol, decimals] = useTokenBalance(tokenContract);
@@ -23,4 +23,4 @@ export const TSTBalance: React.FC<Props> = () => {
   );
 };
 
-export default TSTBalance;
+export default memo(TSTBalance);

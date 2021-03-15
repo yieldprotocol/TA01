@@ -1,5 +1,5 @@
-import React, { useEffect, useContext, useState } from "react";
-import { BigNumber, utils } from "ethers";
+import React, { memo, useContext, useState } from "react";
+import { utils } from "ethers";
 import { SignerContext, TokenContext } from "../hardhat/SymfoniContext";
 import { useStateContext } from "../stores/state";
 import { sendToken, sendEth } from "../helpers/userHelpers";
@@ -13,20 +13,13 @@ interface Form {
   amount: string;
 }
 
-export const SendForm: React.FC<Props> = ({ symbol }) => {
+const SendForm: React.FC<Props> = ({ symbol }) => {
   const {
     state: { user, application },
   } = useStateContext();
   const [signer] = useContext(SignerContext);
   const tokenContract = useContext(TokenContext);
-  const [currBalanceItem, setCurrBalanceItem] = useState<any>(null);
-
-  // get current balance item from global state
-  useEffect(() => {
-    (async () => {
-      setCurrBalanceItem(user.balances[symbol]);
-    })();
-  }, [user]);
+  const currBalanceItem = user.balances[symbol];
 
   const initialFormState = {
     toAddress: "",
@@ -93,6 +86,8 @@ export const SendForm: React.FC<Props> = ({ symbol }) => {
     }));
   };
 
+  if (!currBalanceItem) return null;
+
   return (
     <div className="SendEthForm">
       <p>{`Send${user.txPending ? "ing" : ""} ${symbol}`}</p>
@@ -125,4 +120,4 @@ export const SendForm: React.FC<Props> = ({ symbol }) => {
   );
 };
 
-export default SendForm;
+export default memo(SendForm);

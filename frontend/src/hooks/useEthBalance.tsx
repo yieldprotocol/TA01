@@ -2,21 +2,17 @@ import { useState, useContext, useCallback, useEffect, useRef } from "react";
 import { SignerContext, ProviderContext } from "../hardhat/SymfoniContext";
 import { updateBalance } from "../actions/user";
 import { useStateContext } from "../stores/state";
+import { BigNumber } from "ethers";
 
 export default function useEthBalance() {
   const [signer] = useContext(SignerContext);
   const [provider] = useContext(ProviderContext);
-  const {
-    state: {
-      user: { balances },
-    },
-    dispatch,
-  } = useStateContext();
-  const [balance, setBalance] = useState(balances["ETH"]);
+  const { dispatch } = useStateContext();
+  const [balance, setBalance] = useState(BigNumber.from("0"));
 
   // Using React ref here to prevent component re-rendering when changing
   // previous balance value
-  const prevBalanceRef = useRef(balances["ETH"]);
+  const prevBalanceRef = useRef(balance);
 
   const fetchBalance = useCallback(async () => {
     if (signer) {
@@ -30,7 +26,7 @@ export default function useEthBalance() {
         setBalance(balance);
       }
     }
-  }, [dispatch, signer]);
+  }, [signer]);
 
   useEffect(() => {
     fetchBalance();

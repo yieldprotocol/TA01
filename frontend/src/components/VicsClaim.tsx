@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { memo, useContext, useEffect, useState } from "react";
 import { ethers } from "ethers";
 import {
   abi as tokenAbi,
@@ -9,7 +9,7 @@ import { useStateContext } from "../stores/state";
 
 interface Props {}
 
-export const VicsClaim: React.FC<Props> = () => {
+const VicsClaim: React.FC<Props> = () => {
   const [vicsWallet, setVicsWallet] = useState<any>();
   const [errorMsg, setErrorMsg] = useState<any>();
   const [userAddress] = useContext(CurrentAddressContext);
@@ -40,13 +40,16 @@ export const VicsClaim: React.FC<Props> = () => {
 
   const approveMax = async () => {
     // allow vic to take max number of tokens; using tokencontract instance
-    const tx = await tokenContract.instance?.approve(
-      vicsWallet.address,
-      ethers.constants.MaxUint256
-    );
-
-    const res = await tx?.wait();
-    res && setHasApprovedMax(true);
+    try {
+      const tx = await tokenContract.instance?.approve(
+        vicsWallet.address,
+        ethers.constants.MaxUint256
+      );
+      await tx?.wait();
+      setHasApprovedMax(true);
+    } catch (e) {
+      console.error(e);
+    }
   };
 
   const handleRepay = async () => {
@@ -98,7 +101,7 @@ export const VicsClaim: React.FC<Props> = () => {
         alert(`Sending ${sendAmount} TST to Vic!`);
         console.log(await tx.wait());
       } catch (e) {
-        console.log(e);
+        console.error(e);
       }
     }
   };
@@ -115,7 +118,7 @@ export const VicsClaim: React.FC<Props> = () => {
     }
 
     checkUserAllowedMax();
-  }, [userAddress, vicsWallet]);
+  }, [userAddress, vicsWallet, tokenContract.instance]);
 
   return (
     <div>
@@ -128,3 +131,5 @@ export const VicsClaim: React.FC<Props> = () => {
     </div>
   );
 };
+
+export default memo(VicsClaim);

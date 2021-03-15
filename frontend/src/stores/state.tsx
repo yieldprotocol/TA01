@@ -9,6 +9,7 @@ export interface StateContext {
 interface User {
   txPending: boolean;
   balances: any;
+  approvedMax: false;
 }
 
 interface Application {
@@ -17,7 +18,7 @@ interface Application {
 
 export interface StateAction {
   type: string;
-  payload: any;
+  payload?: any;
 }
 
 export interface Store {
@@ -29,6 +30,7 @@ const initialState: StateContext = {
   user: {
     txPending: false,
     balances: {},
+    approvedMax: false,
   },
 
   application: { vicsWallet: "" },
